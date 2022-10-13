@@ -3,26 +3,60 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
-<t:pagetemplate>
+<t:fourthingsplus>
     <jsp:attribute name="header">
          Welcome to the logged in area
     </jsp:attribute>
 
-    <jsp:attribute name="footer">
-        Logged in area
-    </jsp:attribute>
-
     <jsp:body>
 
-        <p>You should be logged in now</p>
+        <h2>Welcome ${sessionScope.user.username}</h2>
 
-        <h3>Itemlist</h3>
-        <c:forEach var="item" items="${requestScope.itemList}" >
-            <li>${item.name} (${item.created})</li>
-        </c:forEach>
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-        </c:if>
+        <h3>Doing</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <c:forEach var="item" items="${requestScope.itemList}">
+                <c:if test="${item.done == false}">
+                    <tr>
+                        <td>${item.name} (${item.created})</td>
+                        <td>
+                            <form action="done" method="post">
+                                <input type="hidden" name="id" value="${item.id}"/>
+                                <input type="submit" value="Done"/>
+                            </form>
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+        </table>
+
+        <h3>Done - left in the dust</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <c:forEach var="item" items="${requestScope.itemList}">
+                <c:if test="${item.done == true}">
+                    <tr>
+                        <td>${item.name} (${item.created})</td>
+                        <td>Undone</td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+        </table>
+
+
+<%--        <c:if test="${sessionScope.user != null}">--%>
+<%--            <p>You are logged in with the role of "${sessionScope.user.role}".</p>--%>
+<%--        </c:if>--%>
 
         <c:if test="${sessionScope.user == null}">
             <p>You are not logged in yet. You can do it here: <a
@@ -31,4 +65,4 @@
 
     </jsp:body>
 
-</t:pagetemplate>
+</t:fourthingsplus>
