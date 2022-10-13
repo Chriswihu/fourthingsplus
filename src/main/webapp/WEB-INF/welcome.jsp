@@ -11,6 +11,7 @@
     <jsp:body>
 
         <h2>Welcome ${sessionScope.user.username}</h2>
+        <form method="post">
 
         <h3>Doing</h3>
         <table class="table table-striped">
@@ -23,12 +24,17 @@
             <c:forEach var="item" items="${requestScope.itemList}">
                 <c:if test="${item.done == false}">
                     <tr>
-                        <td>${item.name} (${item.created})</td>
                         <td>
-                            <form action="done" method="post">
-                                <input type="hidden" name="id" value="${item.id}"/>
-                                <input type="submit" value="Done"/>
-                            </form>
+                                ${item.name} (${item.created})
+                        </td>
+                        <td>
+                            <button formaction="toggleitem" name="item_id" value="${item.id}">
+                                Done
+                            </button>
+<%--                            <form action="Done" method="post">--%>
+<%--                                <input type="hidden" name="id" value="${item.id}"/>--%>
+<%--                                <input type="submit" value="Done"/>--%>
+<%--                            </form>--%>
                         </td>
                     </tr>
                 </c:if>
@@ -46,22 +52,33 @@
             <c:forEach var="item" items="${requestScope.itemList}">
                 <c:if test="${item.done == true}">
                     <tr>
-                        <td>${item.name} (${item.created})</td>
-                        <td>Undone</td>
+                        <td>
+                                ${item.name} (${item.created})
+                        </td>
+                        <td>
+                            <button formaction="toggleitem" name="item_id" value="${item.id}">
+                                Undo
+                            </button>
+<%--                            <form action="Undo" method="post">--%>
+<%--                                <input type="hidden" name="id" value="${item.id}"/>--%>
+<%--                                <input type="submit" value="Done"/>--%>
+<%--                            </form>--%>
+                        </td>
                     </tr>
                 </c:if>
             </c:forEach>
         </table>
 
+        </form>
 
 <%--        <c:if test="${sessionScope.user != null}">--%>
 <%--            <p>You are logged in with the role of "${sessionScope.user.role}".</p>--%>
 <%--        </c:if>--%>
 
-        <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
-                    href="../login.jsp">Login</a></p>
-        </c:if>
+<%--        <c:if test="${sessionScope.user == null}">--%>
+<%--            <p>You are not logged in yet. You can do it here: <a--%>
+<%--                    href="../login.jsp">Login</a></p>--%>
+<%--        </c:if>--%>
 
     </jsp:body>
 
