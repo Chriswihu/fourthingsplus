@@ -14,4 +14,14 @@ public class ItemFacade
     {
         ItemMapper.toggleItem(item_id, connectionPool);
     }
+
+    public static Item getItemById(int item_id, ConnectionPool connectionPool)
+    {
+        return ItemMapper.getItemById(item_id, connectionPool);
+    }
+
+    public static void updateItemName(int item_id, String name, ConnectionPool connectionPool)
+    {
+        ItemMapper.updateItemName(item_id, name, connectionPool);
+    }
 }

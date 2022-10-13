@@ -31,6 +31,9 @@
                             <button formaction="toggleitem" name="item_id" value="${item.id}">
                                 Done
                             </button>
+                            <button formaction="editform" name="item_id" value="${item.id}">
+                                Edit
+                            </button>
 <%--                            <form action="Done" method="post">--%>
 <%--                                <input type="hidden" name="id" value="${item.id}"/>--%>
 <%--                                <input type="submit" value="Done"/>--%>
