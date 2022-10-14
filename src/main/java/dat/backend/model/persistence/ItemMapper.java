@@ -2,6 +2,7 @@ package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Item;
 
+import javax.print.attribute.standard.RequestingUserName;
 import java.sql.*;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -111,6 +112,23 @@ class ItemMapper
         catch (SQLException e)
         {
             e.printStackTrace();
+        }
+    }
+
+    public static void addItem(String name, String username, ConnectionPool connectionPool)
+    {
+        String sql = "INSERT INTO item (name, username) VALUES(?,?)";
+        try(Connection connection = connectionPool.getConnection())
+        {
+            try(PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, name);
+                ps.setString(2, username);
+                ps.execute();
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 }

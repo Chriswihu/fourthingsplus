@@ -11,8 +11,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UpdateItem", value = "/updateitem")
-public class UpdateItem extends HttpServlet
+@WebServlet(name = "addItem", value = "/additem")
+public class addItem extends HttpServlet
 {
     private static ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
 
@@ -25,16 +25,13 @@ public class UpdateItem extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        int item_id = Integer.parseInt(request.getParameter("item_id"));
         String name = request.getParameter("name");
-        ItemFacade.updateItemName(item_id, name, connectionPool);
+        String username = request.getRequestedSessionId();
+        ItemFacade.addItem(name, username, connectionPool);
 
         List<Item> itemList = ItemFacade.getItems(connectionPool);
 
         request.setAttribute("itemList", itemList);
         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
-
     }
 }

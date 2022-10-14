@@ -30,8 +30,6 @@ public class ToggleItem extends HttpServlet
 
         List<Item> itemList = ItemFacade.getItems(connectionPool);
         request.setAttribute("itemList", itemList);
-
         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
-
     }
 }
