@@ -37,13 +37,17 @@ public class addItem extends HttpServlet
         User user = (User) session.getAttribute("user");
         String name = request.getParameter("name");
         String username = user.getUsername();
-//        int newItemId = ItemFacade.getItems(connectionPool);
 
         ItemFacade.addItem(name, username, connectionPool);
 
-        List<Item> itemList = ItemFacade.getItems(connectionPool);
+        try{
+//            int newItemId = ItemFacade.getItems(connectionPool);
+            List<Item> itemList = ItemFacade.getItems(connectionPool);
+            request.setAttribute("itemList", itemList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        request.setAttribute("itemList", itemList);
         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
     }
 }

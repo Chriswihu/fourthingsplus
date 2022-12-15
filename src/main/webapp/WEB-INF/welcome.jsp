@@ -18,30 +18,42 @@
                         <input name="name" placeholder="New item" class="form-control" id="name" type="text">
                     </div>
                     <div class="col">
-                        <button class="btn btn-outline-secondary" formaction="additem" name="item_id"> Add </button>
+                        <button class="btn btn-outline-secondary" style="width:65px" formaction="additem"
+                                name="item_id"> Add
+                        </button>
                     </div>
                 </div>
             </div>
 
             <h3>Doing</h3>
-            <table class="table table-striped">
+            <table class="table table-striped" style="width:100%">
                 <thead>
                 <tr>
-                    <th>Item</th>
-                    <th>Action</th>
+                    <th style="width:50%">Item</th>
+                    <th>Created on</th>
+                    <th>Updated on</th>
+                    <th style="width:13%">Action</th>
                 </tr>
                 </thead>
                 <c:forEach var="item" items="${requestScope.itemList}">
                     <c:if test="${item.done == false}">
                         <tr>
                             <td>
-                                    ${item.name} (${item.created})
+                                    ${item.name}
                             </td>
                             <td>
-                                <button formaction="toggleitem" name="item_id" value="${item.id}">
+                                    ${item.created.toLocalDateTime().toLocalDate()}
+                            </td>
+                            <td>
+                                    ${item.updated.toLocalDateTime().toLocalDate()}
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-secondary" style="width:65px" formaction="toggleitem"
+                                        name="item_id" value="${item.id}">
                                     Done
                                 </button>
-                                <button formaction="editform" name="item_id" value="${item.id}">
+                                <button class="btn btn-outline-secondary" style="width:65px" formaction="editform"
+                                        name="item_id" value="${item.id}">
                                     Edit
                                 </button>
                                     <%--                            <form action="Done" method="post">--%>
@@ -54,22 +66,31 @@
                 </c:forEach>
             </table>
 
-            <h3>Done - left in the dust</h3>
-            <table class="table table-striped">
+            <h3>Done</h3>
+            <table class="table table-striped" style="width:100%">
                 <thead>
                 <tr>
-                    <th>Item</th>
-                    <th>Action</th>
+                    <th style="width:50%">Item</th>
+                    <th>Created on</th>
+                    <th>Updated on</th>
+                    <th style="width:13%">Action</th>
                 </tr>
                 </thead>
                 <c:forEach var="item" items="${requestScope.itemList}">
                     <c:if test="${item.done == true}">
                         <tr>
                             <td>
-                                    ${item.name} (${item.created})
+                                    ${item.name}
                             </td>
                             <td>
-                                <button formaction="toggleitem" name="item_id" value="${item.id}">
+                                    ${item.created.toLocalDateTime().toLocalDate()}
+                            </td>
+                            <td>
+                                    ${item.updated.toLocalDateTime().toLocalDate()}
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-secondary" style="width:65px" formaction="toggleitem"
+                                        name="item_id" value="${item.id}">
                                     Undo
                                 </button>
                                     <%--                            <form action="Undo" method="post">--%>

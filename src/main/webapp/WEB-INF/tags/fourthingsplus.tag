@@ -29,9 +29,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/about.jsp">About</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/newItem.jsp">New Item</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/additem">New Item</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/itemlist">Item List</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/history">History</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/history.jsp">History</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>

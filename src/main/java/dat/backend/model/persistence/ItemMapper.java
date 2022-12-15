@@ -28,9 +28,10 @@ class ItemMapper
                     String name = rs.getString("name");
                     boolean done = rs.getBoolean("done");
                     Timestamp created = rs.getTimestamp("created");
+                    Timestamp updated = rs.getTimestamp("updated");
                     String username = rs.getString("username");
 
-                    Item newItem = new Item(id, name, done, created, username);
+                    Item newItem = new Item(id, name, done, created, updated, username);
 
                     itemList.add(newItem);
                 }
@@ -78,9 +79,10 @@ class ItemMapper
                     String name = rs.getString("name");
                     boolean done = rs.getBoolean("done");
                     Timestamp created = rs.getTimestamp("created");
+                    Timestamp updated = rs.getTimestamp("updated");
                     String username = rs.getString("username");
 
-                    Item newItem = new Item(id, name, done, created, username);
+                    Item newItem = new Item(id, name, done, created, updated, username);
                     return newItem;
                 }
             }
